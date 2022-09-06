@@ -1,5 +1,6 @@
 ﻿@page "/superheroes"
 @inject iSuperHeroService SuperHeroService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Super Hero Page</PageTitle>
 
@@ -32,7 +33,7 @@
                     @hero.Comic.Name
                 </td>
                 <td>
-
+                    <button class="btn btn-warning" @onclick="()=> ShowHero(hero.Id)"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
         }
@@ -43,6 +44,11 @@
     protected override async Task OnInitializedAsync()
     {
         await SuperHeroService.GetSuperHeroes();
+    }
+
+    void ShowHero(int id)
+    {
+        NavigationManager.NavigateTo($"hero/{id}");
     }
 
 }

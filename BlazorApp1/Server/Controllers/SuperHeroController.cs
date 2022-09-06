@@ -20,15 +20,17 @@ namespace BlazorApp1.Server.Controllers
                 FirstName = "Peter",
                 LastName = "Parker",
                 HeroName = "Spiderman",
-                Comic = comics[0]
+                Comic = comics[0],
+                ComicId = 1
             },
             new SuperHero
             {
-                Id = 1,
+                Id = 2,
                 FirstName = "Bruce",
                 LastName = "Wayne",
                 HeroName = "Batman",
-                Comic = comics[1]
+                Comic = comics[1],
+                ComicId = 2
             }
         };
 
@@ -36,6 +38,11 @@ namespace BlazorApp1.Server.Controllers
         public async Task<ActionResult<List<SuperHero>>> GetSuperHeroes()
         {
             return Ok(heroes);
+        }
+        [HttpGet("comics")]
+        public async Task<ActionResult<List<Comic>>> GetComics()
+        {
+            return Ok(comics);
         }
 
         [HttpGet("{id}")]
